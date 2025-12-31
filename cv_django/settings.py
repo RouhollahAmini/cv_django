@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'website.apps.WebsiteConfig',
+    'apps.about.apps.AboutConfig',
+    'apps.blog.apps.BlogConfig',
+    'apps.contact.apps.ContactConfig',
+    'apps.core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa'
 
 TIME_ZONE = 'Asia/Tehran'
 

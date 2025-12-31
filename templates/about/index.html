@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <title>{% if profile %}{{ profile.name }}{% else %}قالب شخصی وی کارت{% endif %} - درباره من</title>
+
+	<!-- Meta Data -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
+    <meta name="author" content="{% if profile %}{{ profile.name }}{% else %}AliNiyazi{% endif %}" />
+    <meta name="description" content="vCard" />
+
+    <!-- Twitter data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@AliNiyazi">
+    <meta name="twitter:title" content="vCard">
+    <meta name="twitter:description" content="vCard">
+    <meta name="twitter:image" content="{% static 'assets/images/social.html' %}">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="ArtTemplate" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="your url website" />
+    <meta property="og:image" content="{% static 'assets/images/social.html' %}" />
+    <meta property="og:description" content="vCard" />
+    <meta property="og:site_name" content="vCard" />
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/images/favicons/apple-touch-icon-144x144.png' %}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/images/favicons/apple-touch-icon-114x114.png' %}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/images/favicons/apple-touch-icon-72x72.png' %}">
+	<link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/images/favicons/apple-touch-icon-57x57.png' %}">
+	<link rel="shortcut icon" href="{% static 'assets/images/favicons/favicon.png' %}" type="image/png">
+
+    <!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/styles/style.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/demo/style-demo.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/styles/rtl.css' %}"/>
+
+</head>
+<body class="bg-triangles">
+    <!-- Preloader -->
+    <div class="preloader">
+	    <div class="preloader__wrap">
+		    <div class="circle-pulse">
+                <div class="circle-pulse__1"></div>
+                <div class="circle-pulse__2"></div>
+            </div>
+		    <div class="preloader__progress"><span></span></div>
+		</div>
+	</div>
+
+    <main class="main">
+	    <div class="container gutter-top">
+		    <div class="row sticky-parent">
+			    <!-- Sidebar -->
+                <aside class="col-12 col-md-12 col-xl-3">
+				    <div class="sidebar box shadow pb-0 sticky-column">
+						<svg class="avatar avatar--180" viewBox="0 0 188 188">
+                            <g class="avatar__box">
+                                <image xlink:href="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'assets/img/image_01.jpg' %}{% endif %}" height="100%" width="100%" />
+                            </g>
+                        </svg>
+						<div class="text-center">
+						    <h3 class="title title--h3 sidebar__user-name">{% if profile %}<span class="weight--500">{{ profile.name }}</span>{% else %}<span class="weight--500">ملیکا</span> نیازی{% endif %}</h3>
+							<div class="badge badge--gray">{% if profile %}{{ profile.job_title }}{% else %}مدیر خلاق{% endif %}</div>
+
+							<!-- Social -->
+		                    <div class="social">
+		                        {% if profile.facebook_url %}<a class="social__link" href="{{ profile.facebook_url }}"><i class="font-icon icon-facebook"></i></a>{% endif %}
+		                        {% if profile.twitter_url %}<a class="social__link" href="{{ profile.twitter_url }}"><i class="font-icon icon-twitter"></i></a>{% endif %}
+		                        {% if profile.linkedin_url %}<a class="social__link" href="{{ profile.linkedin_url }}"><i class="font-icon icon-linkedin2"></i></a>{% endif %}
+		                    </div>
+						</div>
+
+						<div class="sidebar__info box-inner box-inner--rounded">
+		                    <ul class="contacts-block">
+					            <li class="contacts-block__item" data-toggle="tooltip" data-placement="top" title="تاریخ تولد">
+							        <i class="font-icon icon-calendar"></i>{% if profile %}{{ profile.birth_date }}{% else %}9 بهمن 1375{% endif %}
+							    </li>
+						        <li class="contacts-block__item" data-toggle="tooltip" data-placement="top" title="آدرس">
+							        <i class="font-icon icon-location"></i>{% if profile %}{{ profile.location }}{% else %}ایران, تهران{% endif %}
+							    </li>
+						        <li class="contacts-block__item" data-toggle="tooltip" data-placement="top" title="ایمیل">
+							        <a href="mailto:{% if profile %}{{ profile.email }}{% else %}example@email.com{% endif %}"><i class="font-icon icon-envelope"></i>{% if profile %}{{ profile.email }}{% else %}example@email.com{% endif %}</a>
+							    </li>
+						        <li class="contacts-block__item" data-toggle="tooltip" data-placement="top" title="تلفن">
+							        <i class="font-icon icon-phone"></i>{% if profile %}{{ profile.phone }}{% else %}03831124{% endif %}</li>
+						        <li class="contacts-block__item" data-toggle="tooltip" data-placement="top" title="اسکایپ">
+							        <a href="skype:{% if profile %}{{ profile.skype }}{% else %}skype-example{% endif %}"><i class="font-icon icon-skype"></i>{% if profile %}{{ profile.skype }}{% else %}Aliniyazi.info{% endif %}</a>
+							    </li>
+					        </ul>
+
+							<a class="btn btn--blue-gradient" href="{% if profile.resume_file %}{{ profile.resume_file.url }}{% else %}#{% endif %}"><i class="font-icon icon-download"></i> دانلود رزومه</a>
+						</div>
+					</div>
+		        </aside>
+
+				<!-- Content -->
+		        <div class="col-12 col-md-12 col-xl-9">
+				    <div class="box shadow pb-0 pt-sm-6">
+					    <!-- Menu -->
+					    <div class="circle-menu d-sm-none">
+						    <div class="hamburger">
+                                <div class="line"></div>
+                                <div class="line"></div>
+                                <div class="line"></div>
+                            </div>
+						</div>
+						<div class="inner-menu inner-menu-alt">
+						    <ul class="nav">
+                                <li class="nav__item"><a class="active" href="about.html">درباره من</a></li>
+								<li class="nav__item"><a href="resume.html">رزومه من</a></li>
+                                <li class="nav__item"><a href="portfolio.html">نمونه کار ها</a></li>
+                                <li class="nav__item"><a href="blog.html">وبلاگ</a></li>
+                                <li class="nav__item"><a href="contact.html">تماس با من</a></li>
+                            </ul>
+						</div>
+
+					    <!-- About -->
+						<div class="pb-0 pb-sm-2">
+		                    <h1 class="title title--h1 title__separate">درباره من</h1>
+						    {% if profile %}
+						        {{ profile.bio|linebreaks }}
+						    {% else %}
+						        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. </p>
+						    {% endif %}
+					    </div>
+
+						<!-- What -->
+						<div class="box-inner pb-0">
+						    <h2 class="title title--h3">چه کاری انجام می دهم</h2>
+							<div class="row">
+							    {% for service in services %}
+							    <!-- Case Item -->
+							    <div class="col-12 col-lg-6">
+							        <div class="case-item box box__second">
+									    <img class="case-item__icon" src="{{ service.icon.url }}" alt="{{ service.title }}" />
+										<div>
+									        <h3 class="title title--h5">{{ service.title }}</h3>
+										    <p class="case-item__caption">{{ service.description }}</p>
+										</div>
+									</div>
+								</div>
+							    {% empty %}
+							    <!-- Default services if none exist -->
+							    <div class="col-12 col-lg-6">
+							        <div class="case-item box box__second">
+									    <img class="case-item__icon" src="{% static 'assets/icons/icon-design.svg' %}" alt="" />
+										<div>
+									        <h3 class="title title--h5">طراحی وب سایت</h3>
+										    <p class="case-item__caption">مدرن ترین و با کیفیت بالا طراحی شده در سطح حرفه ای.</p>
+										</div>
+									</div>
+								</div>
+							    {% endfor %}
+							</div>
+						</div>
+
+						<!-- Testimonials -->
+						<div class="box-inner box-inner--white">
+						    <h2 class="title title--h3">نظرات مشتریان</h2>
+
+						    <div class="swiper-container js-carousel-review">
+                                <div class="swiper-wrapper">
+								    {% for testimonial in testimonials %}
+								    <!-- Item review -->
+                                    <div class="swiper-slide review-item">
+										<svg class="avatar avatar--80" viewBox="0 0 84 84">
+                                            <g class="avatar__hexagon">
+                                                <image xlink:href="{{ testimonial.avatar.url }}" height="100%" width="100%" />
+                                            </g>
+                                        </svg>
+									    <h4 class="title title--h5">{{ testimonial.name }}</h4>
+										<p class="review-item__caption">{{ testimonial.comment }}</p>
+									</div>
+								    {% empty %}
+								    <!-- Default testimonial if none exist -->
+                                    <div class="swiper-slide review-item">
+										<svg class="avatar avatar--80" viewBox="0 0 84 84">
+                                            <g class="avatar__hexagon">
+                                                <image xlink:href="{% static 'assets/img/avatar-2.jpg' %}" height="100%" width="100%" />
+                                            </g>
+                                        </svg>
+									    <h4 class="title title--h5">دنیل لویس</h4>
+										<p class="review-item__caption">ملیکا برای ایجاد یک هویت سازمانی استخدام شد. ما با کار انجام شده بسیار خوشحال شدیم.</p>
+									</div>
+								    {% endfor %}
+                                </div>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+						</div>
+
+						<!-- Clients -->
+						<div class="box-inner box-inner--rounded">
+						    <h2 class="title title--h3">مشتریان</h2>
+
+							<div class="swiper-container js-carousel-clients">
+                                <div class="swiper-wrapper">
+								    {% for client in clients %}
+								    <!-- Item client -->
+                                    <div class="swiper-slide">
+									    <a href="{% if client.url %}{{ client.url }}{% else %}#{% endif %}"><img src="{{ client.logo.url }}" alt="{{ client.name }}" /></a>
+									</div>
+								    {% empty %}
+								    <!-- Default client if none exist -->
+                                    <div class="swiper-slide">
+									    <a href="#"><img src="{% static 'assets/img/logo-partner.svg' %}" alt="Logo" /></a>
+									</div>
+								    {% endfor %}
+								</div>
+
+								<div class="swiper-pagination"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Footer -->
+					<footer class="footer">© 1400 علی نیازی</footer>
+		        </div>
+			</div>
+		</div>
+    </main>
+
+    <div class="back-to-top"></div>
+
+    <!-- SVG masks -->
+    <svg class="svg-defs">
+        <clipPath id="avatar-box">
+            <path d="M1.85379 38.4859C2.9221 18.6653 18.6653 2.92275 38.4858 1.85453 56.0986.905299 77.2792 0 94 0c16.721 0 37.901.905299 55.514 1.85453 19.821 1.06822 35.564 16.81077 36.632 36.63137C187.095 56.0922 188 77.267 188 94c0 16.733-.905 37.908-1.854 55.514-1.068 19.821-16.811 35.563-36.632 36.631C131.901 187.095 110.721 188 94 188c-16.7208 0-37.9014-.905-55.5142-1.855-19.8205-1.068-35.5637-16.81-36.63201-36.631C.904831 131.908 0 110.733 0 94c0-16.733.904831-37.9078 1.85379-55.5141z"/>
+        </clipPath>
+        <clipPath id="avatar-hexagon">
+             <path d="M0 27.2891c0-4.6662 2.4889-8.976 6.52491-11.2986L31.308 1.72845c3.98-2.290382 8.8697-2.305446 12.8637-.03963l25.234 14.31558C73.4807 18.3162 76 22.6478 76 27.3426V56.684c0 4.6805-2.5041 9.0013-6.5597 11.3186L44.4317 82.2915c-3.9869 2.278-8.8765 2.278-12.8634 0L6.55974 68.0026C2.50414 65.6853 0 61.3645 0 56.684V27.2891z"/>
+        </clipPath>
+    </svg>
+	<!-- Demo Menu -->
+	<div class="btnSlideNav slideOpen"></div>
+	<div class="btnSlideNav slideClose"></div>
+	<ul class="slideNav">
+		<li class="slideNav__item rtl-mode"><h4 class="title title--5">صفحات بیشتر</h4> </li>
+		<li class="slideNav__item"><a href="one-page.html">1. صفحه تکی</a></li>
+		<li class="slideNav__item"><a href="background-3.html">2. پس زمینه صورتی</a></li>
+		<li class="slideNav__item"><a href="background-2.html">3. پس زمینه سبز</a></li>
+		<li class="slideNav__item"><a href="background-5.html">4. پس زمینه سبز 2</a></li>
+		<li class="slideNav__item"><a href="background-4.html">5. پس زمینه مثلثی</a></li>
+		<li class="slideNav__item"><a href="menu_alternative/about.html">6. منوی ثابت</a></li>
+	</ul>
+	<div class="overlay-slideNav"></div>
+	<!-- Demo Menu -->
+	<!-- JavaScripts -->
+	<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+	<script src="{% static 'assets/js/jquery-3.4.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/plugins.min.js' %}"></script>
+	<script src="{% static 'assets/js/common.js' %}"></script>
+	<script src="{% static 'assets/demo/plugins-demo.js' %}"></script>
+
+</body>
+</html>
